@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="?attr/fullscreenBackgroundColor"
+	android:filterTouchesWhenObscured="true"
+	android:theme="@style/ThemeOverlay.Twinter.FullscreenContainer"
+	tools:context=".ui.login.LoginActivity">
+
+	<!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/zm_black"
+		android:fitsSystemWindows="true">
+
+		<TextView
+			android:id="@+id/welcomeTitle_textView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="28dp"
+			android:gravity="center"
+			android:text="Welcome"
+			android:textColor="#FFFFFF"
+			android:textSize="40dp"
+			android:textStyle="bold"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
+		<TextView
+			android:id="@+id/welcomeText_textView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:gravity="center"
+			android:text="Please enter your InterVenture e-mail 📧"
+			android:textColor="#FFFFFF"
+			android:textSize="28dp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/welcomeTitle_textView" />
+
+		<androidx.appcompat.widget.AppCompatEditText
+			android:id="@+id/email_editText"
+			android:layout_width="280dp"
+			android:layout_height="80dp"
+			android:background="@android:color/white"
+			android:hint="Please enter your email"
+			android:textColor="@color/zm_black"
+			android:textSize="24dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
+		<Button
+			android:id="@+id/go_button"
+			android:layout_width="120dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="24dp"
+			android:background="@android:color/white"
+			android:text="GO"
+			android:textSize="28dp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/email_editText" />
+
+		<TextView
+			android:id="@+id/bottomFooter_textView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="8dp"
+			android:text="twinter"
+			android:textColor="#FFFFFF"
+			android:textSize="24dp"
+			android:textStyle="bold"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

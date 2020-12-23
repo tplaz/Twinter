@@ -126,7 +126,8 @@ class VideoActivity : AppCompatActivity(), ZoomSDKInitializeListener, MeetingSer
 
         val meetingService = zoomSDK.meetingService
 
-        JoinMeetingHelper.instance?.joinMeetingWithNumber(this, meetingNo, meetingPassword)
+        val status = JoinMeetingHelper.instance?.joinMeetingWithNumber(this, "Pera", "Peric")
+        Log.d(TAG, "status: $status")
     }
 
     override fun onMeetingStatusChanged(p0: MeetingStatus?, p1: Int, p2: Int) {
