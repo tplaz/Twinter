@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
 
 android {
 	compileSdkVersion 30
@@ -16,10 +17,24 @@ android {
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 	}
 
+	signingConfigs {
+		release {
+			keyAlias 'twinter'
+			keyPassword 'password'
+			storeFile file('twinter')
+			storePassword 'password'
+		}
+	}
+
 	buildTypes {
 		release {
+			signingConfig signingConfigs.release
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+		}
+
+		debug {
+			signingConfig signingConfigs.release
 		}
 	}
 	compileOptions {
@@ -43,10 +58,19 @@ dependencies {
 	implementation 'com.google.android.material:material:1.2.1'
 	implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
 	implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
+	implementation 'androidx.wear:wear:1.0.0'
+	implementation 'androidx.annotation:annotation:1.1.0'
+	implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
+	implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 	testImplementation 'junit:junit:4.12'
 	androidTestImplementation 'androidx.test.ext:junit:1.1.2'
 	androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+	// firebase
+	implementation platform('com.google.firebase:firebase-bom:26.2.0')
+	implementation 'com.google.firebase:firebase-database-ktx'
+
+	// zoom sdk
 	implementation project(':commonlib')
 	implementation project(':mobilertc')
 	implementation 'com.google.android:flexbox:2.0.1'

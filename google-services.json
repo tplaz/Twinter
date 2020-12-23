@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "351692123225",
+    "firebase_url": "https://hackathon2020-4cea7-default-rtdb.firebaseio.com",
+    "project_id": "hackathon2020-4cea7",
+    "storage_bucket": "hackathon2020-4cea7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351692123225:android:24321c8249483c3adf5548",
+        "android_client_info": {
+          "package_name": "info.interventure.twinter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351692123225-sdq4vg12c2ver7p8bjlvvcqmit5jm62a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "info.interventure.twinter",
+            "certificate_hash": "c8548a371dcef4c08107179d9d086d959eef2b6a"
+          }
+        },
+        {
+          "client_id": "351692123225-bt483l78tu936qdi4ck53odto5443pfa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJNNnJb-E_haB3sWfvc7gaztG6Xk0_TBI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351692123225-bt483l78tu936qdi4ck53odto5443pfa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "351692123225-tkk36flj2li3eg6mn9bum28njcvamtdm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "info.interventure.Hackathon2020"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
