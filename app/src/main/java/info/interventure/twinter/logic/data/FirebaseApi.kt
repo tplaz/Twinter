@@ -8,6 +8,7 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import info.interventure.twinter.helpers.DbConstants
 import info.interventure.twinter.helpers.LoggedUser
+import info.interventure.twinter.model.Room
 import info.interventure.twinter.model.Topic
 import info.interventure.twinter.model.TopicFb
 import info.interventure.twinter.model.User
@@ -18,6 +19,8 @@ class FirebaseApi {
         get() = Firebase.database.getReference(DbConstants.TABLE_TOPICS)
     private val userTable
         get() = Firebase.database.getReference(DbConstants.TABLE_USERS)
+    private val roomsTable
+        get() = Firebase.database.getReference(DbConstants.TABLE_ROOMS)
 
     fun getTopics(topicsListener: (List<Topic>) -> Unit) {
         topicTable.addListenerForSingleValueEvent(object :
@@ -40,5 +43,35 @@ class FirebaseApi {
 
         userTable.child(userId).child("topics").updateChildren(mapOf(topic.id to true))
         topicTable.child(topic.id).child("users").updateChildren(mapOf(userId to true))
+    }
+
+    fun subscribeToUserChanges(userListener: (String) -> Unit) {
+        val userId = LoggedUser.userId ?: return
+
+        userTable.child(userId).addValueEventListener(object :
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val user = snapshot.getValue<User>() ?: return
+                val roomId = user.room
+
+                if (!roomId.isNullOrEmpty()) {
+                    roomsTable.child(roomId).addListenerForSingleValueEvent(object :
+                        ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            val room = snapshot.getValue<Room>() ?: return
+                            userListener.invoke(room.sessionNumber)
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                        }
+                    }
+                    )
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // do nothing
+            }
+        })
     }
 }

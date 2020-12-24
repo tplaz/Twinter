@@ -1,7 +1,6 @@
 package info.interventure.twinter.model
 
-data class TopicFb(
-    val name: String = "",
-    val description: String = "",
+class Room(
+    val sessionNumber: String = "",
     val users: Map<String, Boolean> = emptyMap()
 )

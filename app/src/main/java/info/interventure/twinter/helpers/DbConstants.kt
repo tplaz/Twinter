@@ -5,4 +5,5 @@ object DbConstants {
 
     const val TABLE_USERS: String = "users"
     const val TABLE_TOPICS: String = "topics"
+    const val TABLE_ROOMS: String = "rooms"
 }

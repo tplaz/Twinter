@@ -23,12 +23,13 @@
 
 	<TextView
 		android:id="@+id/step_1_message"
-		android:layout_width="wrap_content"
+		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:layout_marginHorizontal="8dp"
 		android:gravity="center"
 		android:text="Our mission - to connect people based on shared interests"
 		android:textColor="@android:color/white"
+		android:layout_margin="10dp"
 		android:textSize="24dp"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
@@ -55,6 +56,6 @@
 		app:layout_constraintEnd_toEndOf="parent"
 		android:layout_margin="16dp"
 		android:textSize="40dp"
-		android:textColor="@android:color/black"
-		android:text="➡️"/>
+		android:text="️→"
+		android:textColor="@android:color/white"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

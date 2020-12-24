@@ -3,9 +3,15 @@ package info.interventure.twinter.ui.swipe
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
+import butterknife.BindView
+import butterknife.ButterKnife
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
@@ -14,9 +20,18 @@ import info.interventure.twinter.R
 import info.interventure.twinter.dependency.DependencyContainer
 import info.interventure.twinter.logic.presenter.swipe.SwipePresenter
 import info.interventure.twinter.model.Topic
-import info.interventure.twinter.videortc.MainActivity
+import info.interventure.twinter.videortc.WaitingRoomActivity
 
 class SwipeActivity : AppCompatActivity(), SwipePresenter.View {
+
+    @BindView(R.id.container)
+    lateinit var container: ViewGroup
+
+    @BindView(R.id.drawer_layout)
+    lateinit var drawer: DrawerLayout
+
+    @BindView(R.id.userInfo_imageView)
+    lateinit var icon: ImageView
 
     private val cardStackListener: CardStackListener = object : CardStackListener {
         var swipedPosition: Int = 0
@@ -25,7 +40,7 @@ class SwipeActivity : AppCompatActivity(), SwipePresenter.View {
 
         override fun onCardSwiped(direction: Direction?) {
             direction?.let {
-                when(it) {
+                when (it) {
                     Direction.Left -> presenter.onTopicRejected(topicAdapter.items[swipedPosition])
                     Direction.Right -> presenter.onTopicSelected(topicAdapter.items[swipedPosition])
                     else -> {
@@ -46,7 +61,7 @@ class SwipeActivity : AppCompatActivity(), SwipePresenter.View {
             swipedPosition = position  // :(
 
             if (position == topicAdapter.itemCount - 1) {
-                videoButton.visibility = View.VISIBLE
+                goToVideoActivity()
             }
         }
     }
@@ -63,7 +78,7 @@ class SwipeActivity : AppCompatActivity(), SwipePresenter.View {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_swipe)
-
+        ButterKnife.bind(this)
         topicsRecyclerView = findViewById(R.id.stackView)
         with(topicsRecyclerView) {
             layoutManager = CardStackLayoutManager(context, cardStackListener).apply {
@@ -74,7 +89,11 @@ class SwipeActivity : AppCompatActivity(), SwipePresenter.View {
         }
         videoButton = findViewById(R.id.videoButton)
         videoButton.setOnClickListener {
-            goToVideoActivity(it)
+            goToVideoActivity()
+        }
+
+        icon.setOnClickListener {
+            drawer.openDrawer(GravityCompat.START)
         }
 
         presenter.onCreate(this)
@@ -84,7 +103,7 @@ class SwipeActivity : AppCompatActivity(), SwipePresenter.View {
         topicAdapter.items = topics
     }
 
-    fun goToVideoActivity(view: View) {
-        startActivity(Intent(this, MainActivity::class.java))
+    fun goToVideoActivity() {
+        startActivity(Intent(this, WaitingRoomActivity::class.java))
     }
 }

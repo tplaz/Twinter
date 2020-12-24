@@ -40,19 +40,19 @@ class TopicAdapter : RecyclerView.Adapter<TopicAdapter.TopicViewHolder>() {
             val result = adapterPosition % 5
             when (result) {
                 0 -> {
-                    cardBackground.setBackgroundResource(R.drawable.gradient_0)
+                    cardBackground.setBackgroundResource(R.drawable.gradient_4)
                 }
                 1 -> {
                     cardBackground.setBackgroundResource(R.drawable.gradient_1)
                 }
                 2 -> {
-                    cardBackground.setBackgroundResource(R.drawable.gradient_2)
+                    cardBackground.setBackgroundResource(R.drawable.gradient_0)
                 }
                 3 -> {
                     cardBackground.setBackgroundResource(R.drawable.gradient_3)
                 }
                 4 -> {
-                    cardBackground.setBackgroundResource(R.drawable.gradient_4)
+                    cardBackground.setBackgroundResource(R.drawable.gradient_2)
                 }
                 5 -> {
                     cardBackground.setBackgroundResource(R.drawable.gradient_5)

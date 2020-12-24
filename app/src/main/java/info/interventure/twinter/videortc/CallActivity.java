@@ -61,6 +61,8 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
     private static final String APPRTC_URL = "https://appr.tc";
     private static final String UPPER_ALPHA_DIGITS = "ACEFGHJKLMNPQRUVWXY123456789";
 
+    public static final String MY_ROOM_KEY = "MY_ROOM_KEY";
+
     // Peer connection statistics callback period in ms.
     private static final int STAT_CALLBACK_PERIOD = 1000;
     private final ProxyRenderer remoteProxyRenderer = new ProxyRenderer();
@@ -149,7 +151,8 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
         setSwappedFeeds(true /* isSwappedFeeds */);
 
         // Generate a random room ID with 7 uppercase letters and digits
-        String randomRoomID = randomString(7, UPPER_ALPHA_DIGITS);
+        String randomRoomID = getIntent().getStringExtra(MY_ROOM_KEY);  //randomString(7,
+		// UPPER_ALPHA_DIGITS);
         // Show the random room ID so that another client can join from https://appr.tc
         TextView roomIdTextView = findViewById(R.id.roomID);
         roomIdTextView.setText(getString(R.string.room_id_caption) + randomRoomID);
