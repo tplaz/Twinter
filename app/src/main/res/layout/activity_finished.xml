@@ -3,15 +3,54 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:filterTouchesWhenObscured="true">
+	android:filterTouchesWhenObscured="true"
+	android:background="@drawable/gradient_grey">
 
 	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintBottom_toBottomOf="parent"
+		android:id="@id/title"
+		android:textColor="@android:color/white"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
-		android:text="Bye" />
+		app:layout_constraintBottom_toTopOf="@id/titleGuideline"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textAlignment="center"
+		android:padding="10dp"
+		android:text="Want to go again?"
+		android:textSize="40dp" />
 
+	<TextView
+		android:id="@+id/yesButton"
+		android:textColor="@android:color/white"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/title"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAlignment="center"
+		android:padding="10dp"
+		android:layout_marginHorizontal="90dp"
+		android:layout_marginVertical="30dp"
+		android:text="Yes"
+		android:textSize="30dp" />
+
+	<TextView
+		android:id="@+id/noButton"
+		android:textColor="@android:color/white"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/title"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAlignment="center"
+		android:padding="10dp"
+		android:layout_marginHorizontal="90dp"
+		android:layout_marginVertical="30dp"
+		android:text="No"
+		android:textSize="30dp" />
+
+	<androidx.constraintlayout.widget.Guideline
+		android:id="@+id/titleGuideline"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		app:layout_constraintGuide_percent="0.4"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

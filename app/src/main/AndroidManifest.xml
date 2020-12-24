@@ -42,6 +42,8 @@
 		<activity android:name=".videortc.WaitingRoomActivity"/>
 
 		<activity android:name=".videortc.CallActivity"/>
+
+		<activity android:name=".ui.FinishedActivity"/>
 	</application>
 
 </manifest>
