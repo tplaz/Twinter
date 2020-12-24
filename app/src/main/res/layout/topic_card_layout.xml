@@ -9,17 +9,18 @@
 	app:cardCornerRadius="16dp">
 
 	<androidx.constraintlayout.widget.ConstraintLayout
+		android:id="@+id/card_background"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:background="@drawable/gradient">
+		android:background="@drawable/gradient_0">
 
 		<TextView
 			android:id="@+id/topicName"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_marginBottom="8dp"
 			android:textAlignment="center"
 			android:textSize="32sp"
-			android:layout_marginBottom="8dp"
 			app:layout_constraintBottom_toTopOf="@id/topicDescription"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"

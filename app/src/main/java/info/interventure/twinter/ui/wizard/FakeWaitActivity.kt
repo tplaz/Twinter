@@ -18,7 +18,6 @@ class FakeWaitActivity : AppCompatActivity() {
         super.onResume()
         Handler().postDelayed({
             startActivity(Intent(this, SwipeActivity::class.java))
-            overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right)
         }, 3000)
     }
 }
