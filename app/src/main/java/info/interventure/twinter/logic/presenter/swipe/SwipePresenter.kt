@@ -9,10 +9,11 @@ class SwipePresenter(
 
     private var view: View? = null
 
-    fun onViewCreated(view: View) {
+    fun onCreate(view: View) {
         this.view = view
-        val topics = firebaseApi.getTopics()
-        view.submitTopics(topics)
+        firebaseApi.getTopics {
+            view.submitTopics(it)
+        }
     }
 
     fun onTopicRejected(topic: Topic) {

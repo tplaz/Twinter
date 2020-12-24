@@ -1,10 +1,11 @@
 package info.interventure.twinter.ui.swipe
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.os.PersistableBundle
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
@@ -14,15 +15,9 @@ import info.interventure.twinter.R
 import info.interventure.twinter.dependency.DependencyContainer
 import info.interventure.twinter.model.Topic
 import info.interventure.twinter.logic.presenter.swipe.SwipePresenter
+import info.interventure.twinter.ui.video.VideoActivity
 
-class SwipeFragment : Fragment(), SwipePresenter.View {
-    companion object {
-        val TAG = SwipeFragment::class.java.simpleName
-
-        fun newInstance(): SwipeFragment {
-            return SwipeFragment()
-        }
-    }
+class SwipeActivity : AppCompatActivity(), SwipePresenter.View {
 
     private val cardStackListener: CardStackListener = object : CardStackListener {
         var swipedPosition: Int = 0
@@ -50,23 +45,27 @@ class SwipeFragment : Fragment(), SwipePresenter.View {
 
         override fun onCardDisappeared(view: View?, position: Int) {
             swipedPosition = position  // :(
+
+            if (position == topicAdapter.itemCount - 1) {
+                videoButton.visibility = View.VISIBLE
+            }
         }
     }
 
     private lateinit var topicsRecyclerView: RecyclerView
 
+    private lateinit var videoButton: Button
+
     private val topicAdapter = TopicAdapter()
 
     private val presenter = DependencyContainer.provideSwipePresenter()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_swipe, container, false)
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        setContentView(R.layout.activity_swipe)
 
-        topicsRecyclerView = view.findViewById(R.id.stackView)
+        topicsRecyclerView = findViewById(R.id.stackView)
         with(topicsRecyclerView) {
             layoutManager = CardStackLayoutManager(context, cardStackListener).apply {
                 setStackFrom(StackFrom.Top)
@@ -74,11 +73,16 @@ class SwipeFragment : Fragment(), SwipePresenter.View {
             }
             adapter = topicAdapter
         }
+        videoButton = findViewById(R.id.videoButton)
 
-        presenter.onViewCreated(this)
+        presenter.onCreate(this)
     }
 
     override fun submitTopics(topics: List<Topic>) {
         topicAdapter.items = topics
+    }
+
+    fun goToVideoActivity(view: View) {
+        startActivity(Intent(this, VideoActivity::class.java))
     }
 }
