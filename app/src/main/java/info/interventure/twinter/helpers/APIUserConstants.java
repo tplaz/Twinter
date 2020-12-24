@@ -1,9 +1,5 @@
 package info.interventure.twinter.helpers;
 
-/*
- * Copyright © 2014-2020, TWINT AG.
- * All rights reserved.
- */
 public class APIUserConstants {
 
 	// TODO Change it to your web API Key

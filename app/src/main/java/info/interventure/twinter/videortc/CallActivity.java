@@ -18,12 +18,10 @@ package info.interventure.twinter.videortc;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +48,11 @@ import info.interventure.twinter.R;
 import info.interventure.twinter.apprtc.AppRTCClient;
 import info.interventure.twinter.apprtc.PeerConnectionClient;
 import info.interventure.twinter.apprtc.WebSocketRTCClient;
+import info.interventure.twinter.dependency.DependencyContainer;
+import info.interventure.twinter.logic.data.FirebaseApi;
+import info.interventure.twinter.ui.FinishedActivity;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 /**
  * Activity for peer connection call setup, call waiting
@@ -87,6 +90,17 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
     private ImageButton cameraSwitchButton;
     private ImageButton toggleMuteButton;
 
+	private FirebaseApi firebaseApi = DependencyContainer.INSTANCE.provideFirebaseApi();
+	private Function1<? super String, Unit> onRoomChangeListener = roomId -> {
+		if (roomId == null || roomId.isEmpty()) {
+			onCallHangUp();
+			Intent myIntent = new Intent(CallActivity.this, FinishedActivity.class);
+			startActivity(myIntent);
+			finish();
+		}
+		return null;
+	};
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,32 +119,17 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
         toggleMuteButton = findViewById(R.id.button_call_toggle_mic);
 
         // Add buttons click events.
-        disconnectButton.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                onCallHangUp();
-            }
-        });
+        disconnectButton.setOnClickListener(v -> onCallHangUp());
 
-        cameraSwitchButton.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-                onCameraSwitch();
-            }
-        });
+        cameraSwitchButton.setOnClickListener(view -> onCameraSwitch());
 
-        toggleMuteButton.setOnClickListener(new OnClickListener() {
-            public void onClick(View view) {
-                boolean enabled = onToggleMic();
-                toggleMuteButton.setAlpha(enabled ? 1.0f : 0.3f);
-            }
-        });
+        toggleMuteButton.setOnClickListener(view -> {
+			boolean enabled = onToggleMic();
+			toggleMuteButton.setAlpha(enabled ? 1.0f : 0.3f);
+		});
 
         // Swap feeds on pip view click.
-        pipRenderer.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setSwappedFeeds(!isSwappedFeeds);
-            }
-        });
+        pipRenderer.setOnClickListener(view -> setSwappedFeeds(!isSwappedFeeds));
 
         remoteRenderers.add(remoteProxyRenderer);
 
@@ -160,6 +159,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
 
         // Connect video call to the random room
         connectVideoCall(randomRoomID);
+		firebaseApi.subscribeToUserChanges(onRoomChangeListener);
     }
 
     // Create a random string
@@ -300,14 +300,10 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
                     .setTitle(getText(R.string.channel_error_title))
                     .setMessage(errorMessage)
                     .setCancelable(false)
-                    .setNeutralButton(R.string.ok,
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                    disconnect();
-                                }
-                            })
+                    .setNeutralButton(R.string.ok, (dialog, id) -> {
+						dialog.cancel();
+						disconnect();
+					})
                     .create()
                     .show();
         }
@@ -324,15 +320,12 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
     }
 
     private void reportError(final String description) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (!isError) {
-                    isError = true;
-                    disconnectWithErrorMessage(description);
-                }
-            }
-        });
+        runOnUiThread(() -> {
+			if (!isError) {
+				isError = true;
+				disconnectWithErrorMessage(description);
+			}
+		});
     }
 
     // Create VideoCapturer

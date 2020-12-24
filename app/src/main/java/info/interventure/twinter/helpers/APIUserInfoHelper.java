@@ -15,7 +15,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.concurrent.ConcurrentNavigableMap;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -23,10 +22,6 @@ import javax.net.ssl.HttpsURLConnection;
 
 import static info.interventure.twinter.helpers.APIUserConstants.EXPIRED_TIME;
 
-/*
- * Copyright © 2014-2020, TWINT AG.
- * All rights reserved.
- */
 public class APIUserInfoHelper {
 
 	private final static String TAG = "ZoomSDKExample";
