@@ -29,6 +29,10 @@
 			android:theme="@style/AppTheme.NoActionBar" />
 
 		<activity android:name=".ui.swipe.SwipeActivity"/>
+
+		<activity android:name=".videortc.MainActivity"/>
+
+		<activity android:name=".videortc.CallActivity"/>
 	</application>
 
 </manifest>
