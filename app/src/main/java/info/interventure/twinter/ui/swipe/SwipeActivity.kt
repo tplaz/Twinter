@@ -14,7 +14,7 @@ import info.interventure.twinter.R
 import info.interventure.twinter.dependency.DependencyContainer
 import info.interventure.twinter.logic.presenter.swipe.SwipePresenter
 import info.interventure.twinter.model.Topic
-import info.interventure.twinter.videortc.MainActivity
+import info.interventure.twinter.videortc.WaitingRoomActivity
 
 class SwipeActivity : AppCompatActivity(), SwipePresenter.View {
 
@@ -46,7 +46,7 @@ class SwipeActivity : AppCompatActivity(), SwipePresenter.View {
             swipedPosition = position  // :(
 
             if (position == topicAdapter.itemCount - 1) {
-                videoButton.visibility = View.VISIBLE
+                goToVideoActivity()
             }
         }
     }
@@ -74,7 +74,7 @@ class SwipeActivity : AppCompatActivity(), SwipePresenter.View {
         }
         videoButton = findViewById(R.id.videoButton)
         videoButton.setOnClickListener {
-            goToVideoActivity(it)
+            goToVideoActivity()
         }
 
         presenter.onCreate(this)
@@ -84,7 +84,7 @@ class SwipeActivity : AppCompatActivity(), SwipePresenter.View {
         topicAdapter.items = topics
     }
 
-    fun goToVideoActivity(view: View) {
-        startActivity(Intent(this, MainActivity::class.java))
+    fun goToVideoActivity() {
+        startActivity(Intent(this, WaitingRoomActivity::class.java))
     }
 }
