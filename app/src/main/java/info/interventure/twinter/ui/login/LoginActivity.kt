@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import butterknife.BindView
 import butterknife.ButterKnife
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -21,8 +20,7 @@ import info.interventure.twinter.R
 import info.interventure.twinter.helpers.DbConstants
 import info.interventure.twinter.helpers.LoggedUser
 import info.interventure.twinter.model.User
-import info.interventure.twinter.ui.swipe.SwipeActivity
-import info.interventure.twinter.ui.video.VideoActivity
+import info.interventure.twinter.ui.wizard.Step1WizActivity
 import kotlinx.android.synthetic.main.activity_fullscreen.*
 import java.util.Locale
 
@@ -65,9 +63,11 @@ class LoginActivity : AppCompatActivity() {
                             LoggedUser.userId = userId
                             startWizard()
                         } else {
-                            Toast.makeText(this@LoginActivity, "Looks like this e-mail is not registered!",
+                            Toast.makeText(
+                                this@LoginActivity, "Looks like this e-mail is not registered!",
                                 Toast
-                                .LENGTH_LONG).show()
+                                    .LENGTH_LONG
+                            ).show()
 
 //                            Snackbar.make(
 //                                emailEditText, "Looks like this e-mail is not registered!", Snackbar
@@ -91,7 +91,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun startWizard() {
         // magic
-        startActivity(Intent(this, SwipeActivity::class.java))
+        startActivity(Intent(this, Step1WizActivity::class.java))
         finish()
     }
 }

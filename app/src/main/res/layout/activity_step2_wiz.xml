@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@android:color/black"
+	android:filterTouchesWhenObscured="true"
+	tools:context=".ui.wizard.Step2WizActivity">
+
+	<TextView
+		android:id="@+id/step_2_title"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp"
+		android:gravity="center"
+		android:text="How does it work?"
+		android:textColor="@android:color/white"
+		android:textSize="48dp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<TextView
+		android:id="@+id/step_2_message1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="16dp"
+		android:layout_margin="8dp"
+		android:gravity="center"
+		android:text="We'll show you show some topics that you might find interesting..."
+		android:textColor="@android:color/white"
+		android:textSize="24dp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/step_2_title" />
+
+	<TextView
+		android:id="@+id/step_2_message3"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="32dp"
+		android:gravity="center"
+		android:text="If you don't like a topic...💔"
+		android:textColor="@android:color/white"
+		android:textSize="30dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toStartOf="@+id/step_2_emoji_1"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<TextView
+		android:id="@+id/step_2_message4"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="8dp"
+		android:layout_marginTop="8dp"
+		android:gravity="center"
+		android:text="dismiss it by swiping left"
+		android:textColor="@android:color/white"
+		android:textSize="20dp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/step_2_message3" />
+
+	<TextView
+		android:id="@+id/step_2_emoji_1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="32dp"
+		android:text="👈"
+		android:textColor="@android:color/black"
+		android:textSize="40dp"
+		app:layout_constraintBottom_toBottomOf="@+id/step_2_message3"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toEndOf="@+id/step_2_message3"
+
+		app:layout_constraintTop_toTopOf="@+id/step_2_message3" />
+
+	// dodje cudo
+
+	<TextView
+		android:id="@+id/step_2_message5"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="8dp"
+		android:layout_marginTop="8dp"
+		android:layout_marginBottom="40dp"
+		android:gravity="center"
+		android:text="If you like a topic...❤️"
+		android:textColor="@android:color/white"
+		android:textSize="30dp"
+		app:layout_constraintBottom_toTopOf="@+id/step_2_next"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toEndOf="@+id/step_2_emoji_2" />
+
+	<TextView
+		android:id="@+id/step_2_message6"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="8dp"
+		android:layout_marginTop="8dp"
+		android:gravity="center"
+		android:text="dismiss it by swiping left"
+		android:textColor="@android:color/white"
+		android:textSize="20dp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/step_2_message5" />
+
+	<TextView
+		android:id="@+id/step_2_emoji_2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="16dp"
+		android:text="👉"
+		android:textColor="@android:color/black"
+		android:textSize="40dp"
+
+		app:layout_constraintBottom_toBottomOf="@+id/step_2_message5"
+		app:layout_constraintEnd_toStartOf="@+id/step_2_message5"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/step_2_message5" />
+
+	<TextView
+		android:id="@+id/step_2_next"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="16dp"
+		android:text="➡️"
+		android:textColor="@android:color/black"
+		android:textSize="40dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@android:color/black"
+	android:filterTouchesWhenObscured="true"
+	tools:context=".ui.wizard.Step1WizActivity">
+
+	<TextView
+		android:id="@+id/step_3_title_top"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="32dp"
+		android:gravity="center"
+		android:text="If somebody else likes the same topic, we'll match the two of you together!"
+		android:textColor="@android:color/white"
+		android:textSize="36dp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<TextView
+		android:id="@+id/step_3_emoji"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp"
+		android:text="🤝"
+		android:textColor="@android:color/black"
+		android:textSize="40dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<TextView
+		android:id="@+id/step_3_title_bot"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="8dp"
+		android:layout_marginBottom="50dp"
+		android:gravity="center"
+		android:text="You will enter a video chat but beware! You have only 1 minute to chat!"
+		android:textColor="@android:color/white"
+		android:textSize="36dp"
+		app:layout_constraintBottom_toTopOf="@+id/step_3_next"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent" />
+
+	<TextView
+		android:id="@+id/step_3_next"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="16dp"
+		android:text="➡️"
+		android:textColor="@android:color/black"
+		android:textSize="40dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
