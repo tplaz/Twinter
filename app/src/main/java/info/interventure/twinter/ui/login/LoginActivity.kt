@@ -63,6 +63,7 @@ class LoginActivity : AppCompatActivity() {
                                 emailEditText, "Looks like this e-mail is not registered!", Snackbar
                                     .LENGTH_INDEFINITE
                             )
+                            startWizard()
                         }
                     }
 

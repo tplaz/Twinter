@@ -16,8 +16,7 @@ class JoinMeetingHelper private constructor() {
         val params = JoinMeetingParams()
         params.displayName = DISPLAY_NAME
         params.meetingNo = meetingNo
-        params.password = meetingPassword
-        return meetingService.joinMeetingWithParams(context, params, opts)
+        return ApiUserStartMeetingHelper.getInstance().startMeetingWithNumber(context, meetingNo)
     }
 
     fun joinMeetingWithVanityId(context: Context?, vanityId: String?, meetingPassword: String?): Int {
