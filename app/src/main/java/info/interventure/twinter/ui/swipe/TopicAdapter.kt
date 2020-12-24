@@ -31,9 +31,11 @@ class TopicAdapter: RecyclerView.Adapter<TopicAdapter.TopicViewHolder>() {
     inner class TopicViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
         private val topicNameView: TextView = view.findViewById(R.id.topicName)
+        private val topicDescriptionView: TextView = view.findViewById(R.id.topicDescription)
 
         fun bind(topic: Topic) {
             topicNameView.text = topic.name
+            topicDescriptionView.text = topic.description
         }
     }
 }
