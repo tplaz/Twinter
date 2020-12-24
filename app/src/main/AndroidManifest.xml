@@ -11,7 +11,7 @@
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme.Fullscreen">
-		<activity android:name=".ui.wizard.FakeWaitActivity"></activity>
+		<activity android:name=".ui.wizard.FakeWaitActivity"/>
 		<activity android:name=".ui.wizard.Step3WizActivity" />
 		<activity android:name=".ui.wizard.Step2WizActivity" />
 		<activity android:name=".ui.wizard.Step1WizActivity" />
@@ -35,7 +35,12 @@
 			android:label="Video"
 			android:screenOrientation="portrait"
 			android:theme="@style/AppTheme.NoActionBar" />
-		<activity android:name=".ui.swipe.SwipeActivity" />
+
+		<activity android:name=".ui.swipe.SwipeActivity"/>
+
+		<activity android:name=".videortc.MainActivity"/>
+
+		<activity android:name=".videortc.CallActivity"/>
 	</application>
 
 </manifest>

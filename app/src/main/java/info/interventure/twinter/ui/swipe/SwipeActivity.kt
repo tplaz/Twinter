@@ -2,7 +2,6 @@ package info.interventure.twinter.ui.swipe
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -13,9 +12,9 @@ import com.yuyakaido.android.cardstackview.Direction
 import com.yuyakaido.android.cardstackview.StackFrom
 import info.interventure.twinter.R
 import info.interventure.twinter.dependency.DependencyContainer
-import info.interventure.twinter.model.Topic
 import info.interventure.twinter.logic.presenter.swipe.SwipePresenter
-import info.interventure.twinter.ui.video.VideoActivity
+import info.interventure.twinter.model.Topic
+import info.interventure.twinter.videortc.MainActivity
 
 class SwipeActivity : AppCompatActivity(), SwipePresenter.View {
 
@@ -74,6 +73,9 @@ class SwipeActivity : AppCompatActivity(), SwipePresenter.View {
             adapter = topicAdapter
         }
         videoButton = findViewById(R.id.videoButton)
+        videoButton.setOnClickListener {
+            goToVideoActivity(it)
+        }
 
         presenter.onCreate(this)
     }
@@ -83,6 +85,6 @@ class SwipeActivity : AppCompatActivity(), SwipePresenter.View {
     }
 
     fun goToVideoActivity(view: View) {
-        startActivity(Intent(this, VideoActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
     }
 }
