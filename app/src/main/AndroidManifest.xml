@@ -27,7 +27,8 @@
 			android:name=".ui.video.VideoActivity"
 			android:label="Video"
 			android:theme="@style/AppTheme.NoActionBar" />
-		<activity android:name=".MainActivity"></activity>
+
+		<activity android:name=".ui.swipe.SwipeActivity"/>
 	</application>
 
 </manifest>

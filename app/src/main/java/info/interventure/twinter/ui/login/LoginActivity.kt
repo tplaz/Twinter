@@ -21,8 +21,10 @@ import info.interventure.twinter.R
 import info.interventure.twinter.helpers.DbConstants
 import info.interventure.twinter.helpers.LoggedUser
 import info.interventure.twinter.model.User
+import info.interventure.twinter.ui.swipe.SwipeActivity
 import info.interventure.twinter.ui.video.VideoActivity
 import kotlinx.android.synthetic.main.activity_fullscreen.*
+import java.util.Locale
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -47,22 +49,30 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initButton() {
         goButton.setOnClickListener {
-            val text = email_editText.text.toString()
+            val text = email_editText.text.toString().trim().toLowerCase(Locale.getDefault())
             if (android.util.Patterns.EMAIL_ADDRESS.matcher(text).matches()) {
                 val reference = Firebase.database.getReference(DbConstants.TABLE_USERS)
                 reference.orderByChild("email").equalTo(text).addListenerForSingleValueEvent(object :
                     ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        val user = snapshot.getValue<User>()
-                        if (user != null) {
+                        val matchedUser = snapshot.children.firstOrNull()
+
+                        val user = matchedUser?.getValue<User>()
+                        val userId = matchedUser?.key
+                        if (user != null && userId != null) {
                             LoggedUser.isLogged = true
                             LoggedUser.email = user.email
+                            LoggedUser.userId = userId
                             startWizard()
                         } else {
-                            Snackbar.make(
-                                emailEditText, "Looks like this e-mail is not registered!", Snackbar
-                                    .LENGTH_INDEFINITE
-                            )
+                            Toast.makeText(this@LoginActivity, "Looks like this e-mail is not registered!",
+                                Toast
+                                .LENGTH_LONG).show()
+
+//                            Snackbar.make(
+//                                emailEditText, "Looks like this e-mail is not registered!", Snackbar
+//                                    .LENGTH_INDEFINITE
+//                            )
                         }
                     }
 
@@ -81,6 +91,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun startWizard() {
         // magic
-        startActivity(Intent(this, VideoActivity::class.java))
+        startActivity(Intent(this, SwipeActivity::class.java))
+        finish()
     }
 }
