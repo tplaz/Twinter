@@ -33,9 +33,11 @@ public class WaitingRoomActivity extends Activity {
 
 	private FirebaseApi firebaseApi = DependencyContainer.INSTANCE.provideFirebaseApi();
 	private Function1<? super String, Unit> onRoomChangeListener = roomId -> {
-		Intent myIntent = new Intent(WaitingRoomActivity.this, CallActivity.class);
-		myIntent.putExtra(CallActivity.MY_ROOM_KEY, roomId);
-		startActivity(myIntent);
+		if (roomId != null && !roomId.isEmpty()) {
+			Intent myIntent = new Intent(WaitingRoomActivity.this, CallActivity.class);
+			myIntent.putExtra(CallActivity.MY_ROOM_KEY, roomId);
+			startActivity(myIntent);
+		}
 		return null;
 	};
 

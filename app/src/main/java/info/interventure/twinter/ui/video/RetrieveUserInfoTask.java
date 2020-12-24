@@ -6,10 +6,6 @@ import android.util.Log;
 import info.interventure.twinter.helpers.APIUserInfo;
 import info.interventure.twinter.helpers.APIUserInfoHelper;
 
-/*
- * Copyright © 2014-2020, TWINT AG.
- * All rights reserved.
- */
 class RetrieveUserInfoTask extends AsyncTask<String, Void, APIUserInfo> {
 
 	@Override

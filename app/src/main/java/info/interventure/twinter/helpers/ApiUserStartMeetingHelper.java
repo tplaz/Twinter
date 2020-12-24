@@ -9,10 +9,6 @@ import us.zoom.sdk.StartMeetingOptions;
 import us.zoom.sdk.StartMeetingParamsWithoutLogin;
 import us.zoom.sdk.ZoomSDK;
 
-/*
- * Copyright © 2014-2020, TWINT AG.
- * All rights reserved.
- */
 class ApiUserStartMeetingHelper {
 
 	private final static String TAG = "ApiUserStart";

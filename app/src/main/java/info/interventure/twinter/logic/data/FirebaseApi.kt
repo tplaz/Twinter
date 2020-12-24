@@ -45,7 +45,7 @@ class FirebaseApi {
         topicTable.child(topic.id).child("users").updateChildren(mapOf(userId to true))
     }
 
-    fun subscribeToUserChanges(userListener: (String) -> Unit) {
+    fun subscribeToUserChanges(userListener: (String?) -> Unit) {
         val userId = LoggedUser.userId ?: return
 
         userTable.child(userId).addValueEventListener(object :
@@ -58,14 +58,16 @@ class FirebaseApi {
                     roomsTable.child(roomId).addListenerForSingleValueEvent(object :
                         ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
-                            val room = snapshot.getValue<Room>() ?: return
-                            userListener.invoke(room.sessionNumber)
+                            val room = snapshot.getValue<Room>()
+                            userListener.invoke(room?.sessionNumber)
                         }
 
                         override fun onCancelled(error: DatabaseError) {
                         }
                     }
                     )
+                } else {
+                    userListener.invoke(null)
                 }
             }
 
